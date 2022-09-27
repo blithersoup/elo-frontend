@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 const newLeagueStart = async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, pass } = req.body as { name: string, pass: string };
 
-  await fetch("https://0.0.0.0:3030/league/add", {
+  await fetch(`${process.env.NEXT_PUBLIC_URL}/league/add`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
