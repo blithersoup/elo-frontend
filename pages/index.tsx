@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 //import Head from 'next/head'
+import { useRouter } from "next/router"
 import { useEffect, useState } from 'react'
 import {
   Table,
@@ -26,6 +27,7 @@ interface person {
 }
 
 const Home: NextPage = () => {
+  const router = useRouter()
   const id = 1;
   const [data, setData] = useState<person[]>([]);
   const ranks = (sc: number) => {
@@ -50,15 +52,15 @@ const Home: NextPage = () => {
     })();
   }, [])
 
-  const Row = ({ username, wins, losses, elo, rank }: person) => (
-    <Tr>
-      <Td>{username}</Td>
+  const Row = ({ username, wins, losses, elo, rank, id }: person) => (
+
+    <Tr onClick={() => router.push(`/person/${id}`)}>
+      <Td >{username}</Td>
       <Td isNumeric>{wins}</Td>
       <Td isNumeric>{losses}</Td>
       <Td isNumeric>{elo}</Td>
       <Td>{ranks(rank)}</Td>
-    </Tr>
-
+    </Tr >
   )
 
 
